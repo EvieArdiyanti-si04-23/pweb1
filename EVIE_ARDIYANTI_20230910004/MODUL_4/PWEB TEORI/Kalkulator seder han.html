@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        input{
+            margin-bottom: 5px;
+            width: 120px; 
+        }
+        button{
+            width: 30px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        button: :last-child;
+        width: 120px;
+    </style>
+</head>
+<body>
+    <input type="text" name="hasil" id="hasil" readonly><br>
+    <button onclick="Angka('0');">0</button>
+    <button onclick="Angka('1');">1</button>
+    <button onclick="Angka('2');">2</button>
+    <button onclick="Angka('3');">3</button><br>
+    <button onclick="Angka('4');">4</button>
+    <button onclick="Angka('5');">5</button>
+    <button onclick="Angka('6');">6</button>
+    <button onclick="Angka('7');">7</button><br>
+    <button onclick="Angka('8');">8</button>
+    <button onclick="Angka('9');">9</button>
+    <button onclick="Angka('+');">+</button>
+    <button onclick="Angka('-');">-</button><br>
+    <button style="width: 150px; background-color: pink;=" onclick="calculateResult()">=</button>
+   
+
+    <script>
+        let varsementara="";
+        let bil1=0, bil2=0, opr=""; 
+        function Angka(x) { 
+            varsementara=varsementara+x;
+            if(opr!=""){
+                bil1=varsementara;
+                document.getElementById('hasil').value=bil1;
+            }else{
+                bil2=varsementara;
+                document.getElementById('hasil').value=bil2;
+            }
+        }
+
+    </script>
+</body>
+</html>

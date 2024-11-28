@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style> 
+        input{
+            width: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <p id="pt"></p>
+    <input type="text" name="" id="bil1">
+    <input type="text" name="" id="opr" value="+">
+    <input type="text" name="" id="bil2">
+    <input type="text" name="" id="hasil">
+    <script>
+        document.write("Belajar Javascrpit");
+        function Hitung(){
+            let bil1 = document.getElementById('bil1').value;
+            let bil1 = document.getElementById('bil2').value;
+            let opr = document.getElementById('opr');
+
+            switch (opr){
+                case"+":
+                let bil3 = parseFloat (bil1) + parseFloat(bil2);
+                break;
+                case "-":
+                    let bil3 = parseFloat(bil1)+parseFloat(bil2);
+                    break;
+                case "*": 
+                let bil3 = parseFloat(bil1)+parseFloat(bil2);
+                break;
+                case "/": 
+                let bil3 = parseFloat(bil1)+parseFloat(bil2);
+                break;
+                case "^": 
+                let bil3 = parseFloat(bil1)+parseFloat(bil2);
+                break;
+            }
+            alert(bil1);
+        }
+    </script>
+</body>
+</html>

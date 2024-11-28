@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direktori Alumni</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color:  #0e2aa8;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        main {
+            padding: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            border-bottom: 2px solid  #1d0ea8;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            background: #eef;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form label {
+            margin-bottom: 0.5rem;
+        }
+
+        form input {
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #0e11a8;
+            color: white;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #06c5ff;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #333;
+            color: white;
+        }
+
+        #search-bar {
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Direktori Alumni</h1>
+    </header>
+    <main>
+        <section id="search-alumni">
+            <h2>Cari Alumni</h2>
+            <input type="search" id="search-bar" placeholder="Cari berdasarkan nama...">
+        </section>
+        <section id="alumni-list">
+            <h2>Daftar Alumni</h2>
+            <ul id="list">
+                <!-- Alumni akan ditambahkan di sini -->
+            </ul>
+        </section>
+        <section id="add-alumni">
+            <h2>Tambahkan Alumni</h2>
+            <form id="alumni-form">
+                <label for="name">Nama:</label>
+                <input type="text" id="name" placeholder="Masukkan nama" required>
+                <label for="year">Tahun Kelulusan:</label>
+                <input type="number" id="year" placeholder="Masukkan tahun kelulusan" required>
+                <button type="submit">Tambahkan</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy;Daftar Alumni Prodi Sistem Informasi</p>
+    </footer>
+    <script>
+        const daftarAlumni = document.getElementById("list");
+        const pencarian = document.getElementById("search-bar");
+
+        document.getElementById("alumni-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Ambil data dari formulir
+            const nama = document.getElementById("name").value;
+            const tahun = document.getElementById("year").value;
+
+            // Buat elemen daftar baru
+            const li = document.createElement("li");
+            li.textContent = `${nama} (Tahun Kelulusan: ${tahun})`;
+
+            // Tambahkan atribut data untuk pencarian
+            li.dataset.name = nama.toLowerCase();
+
+            // Tambahkan elemen ke daftar alumni
+            daftarAlumni.appendChild(li);
+
+            // Bersihkan formulir
+            document.getElementById("name").value = "";
+            document.getElementById("year").value = "";
+        });
+
+        // Tambahkan fungsi pencarian
+        pencarian.addEventListener("input", function() {
+            const query = pencarian.value.toLowerCase();
+            const itemAlumni = daftarAlumni.querySelectorAll("li");
+
+            itemAlumni.forEach((item) => {
+                const nama = item.dataset.name;
+                if (nama.includes(query)) {
+                    item.style.display = "block";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        });
+    </script>
+</body>
+</html>

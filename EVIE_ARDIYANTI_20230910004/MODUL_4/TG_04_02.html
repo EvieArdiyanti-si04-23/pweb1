@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Alumni Sederhana</title>
+    <link rel="stylesheet" href="TG_04_02_stylesheet.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Daftar Alumni Prodi Sistem Informasi</h1>
+        <form id="alumniForm">
+            <input type="text" id="nama" placeholder="Nama Alumni" required>
+            <input type="text" id="tahun" placeholder="Tahun Lulus" required>
+            <button type="submit">Tambahkan Alumni</button>
+        </form>
+        <h2>Alumni Terdaftar:</h2>
+        <ul id="alumniList"></ul>
+
+        <h2>Cari Alumni</h2>
+        <form id="searchForm">
+            <input type="text" id="searchBar" placeholder="Cari berdasarkan nama...">
+            <button type="submit">Cari</button>
+        </form>
+    </div>
+    <script>
+      //untuk menampilkan urutan alumni menggunakan array
+        const alumniArray = [];
+        const alumniListElement = document.getElementById('alumniList');
+
+        // Fungsi untuk memperbarui tampilan daftar alumni
+        function updateAlumniList(filter = '') {
+            alumniListElement.innerHTML = ''; 
+            alumniArray
+                .filter(alumni => alumni.nama.toLowerCase().includes(filter.toLowerCase()))
+                .forEach(alumni => {
+                    const li = document.createElement('li');
+                    li.textContent = `${alumni.nama} - Lulus Tahun ${alumni.tahun}`;
+                    alumniListElement.appendChild(li);
+                });
+        }
+
+        //  untuk menambahkan alumni
+        document.getElementById('alumniForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Mencegah pengiriman formulir
+
+            // Ambil nilai input
+            const nama = document.getElementById('nama').value;
+            const tahun = document.getElementById('tahun').value;
+
+            // Tambahkan alumni ke array
+            alumniArray.push({ nama, tahun });
+
+            // Perbarui daftar alumni
+            updateAlumniList();
+
+            // Kosongkan input
+            document.getElementById('alumniForm').reset();
+        });
+
+        //  untuk pencarian
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Mencegah pengiriman formulir
+
+            const query = document.getElementById('searchBar').value;
+            updateAlumniList(query);
+        });
+
+        updateAlumniList();
+    </script>
+</body>
+</html>
