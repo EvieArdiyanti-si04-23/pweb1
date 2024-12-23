@@ -1,0 +1,1 @@
+<?php echo "Nama: ", "Budi", "<br>", "Umur: ", 25, " tahun<br>"; ?>.
